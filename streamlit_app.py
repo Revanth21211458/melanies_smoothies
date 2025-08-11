@@ -32,7 +32,12 @@ if ingredients_list:
     ingredients_string =''
     for fruit_chosen in ingredients_list:
         ingredients_string += fruit_chosen + ''
-        search_on=pd_df.loc[pd_df['FRUIT_NAME'] == fruit_chosen, 'SEARCH_ON'].iloc[0]
+        result = pd_df.loc[pd_df['FRUIT_NAME'] == fruit_chosen, 'SEARCH_ON']
+        if result.empty or pd.isna(result,iloc[0]):
+         st.error(f"No SEARCH_ON value found for {fruit_chosen}")
+        else:
+         search_on = str(result.iloc[0])  # make sure it's a string
+        #search_on=pd_df.loc[pd_df['FRUIT_NAME'] == fruit_chosen, 'SEARCH_ON'].iloc[0]
         #st.write('The search value for ', fruit_chosen,' is ', search_on, '.')
 
         st.subheader(fruit_chosen + ' Nutrition Information')
