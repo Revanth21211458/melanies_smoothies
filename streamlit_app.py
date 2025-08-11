@@ -33,7 +33,7 @@ if ingredients_list:
     for fruit_chosen in ingredients_list:
         ingredients_string += fruit_chosen + ''
         result = pd_df.loc[pd_df['FRUIT_NAME'] == fruit_chosen, 'SEARCH_ON']
-        if result.empty or pd.isna(result.iloc[0]):
+        if result.empty:
          st.error(f"No SEARCH_ON value found for {fruit_chosen}")
         else:
          search_on = str(result.iloc[0])  # make sure it's a string
